@@ -1,0 +1,31 @@
+- model_class = Driver
+div class="page-header"
+  h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+table class="table table-striped"
+  thead
+    tr
+      th= model_class.human_attribute_name(:id)
+      th= model_class.human_attribute_name(:headquarter_id)
+      th= model_class.human_attribute_name(:name)
+      th= model_class.human_attribute_name(:phone)
+      th= model_class.human_attribute_name(:home_latitude)
+      th= model_class.human_attribute_name(:home_longitude)
+      th= model_class.human_attribute_name(:created_at)
+      th=t '.actions', :default => t("helpers.actions")
+  tbody
+    - @drivers.each do |driver|
+      tr
+        td= link_to driver.id, driver_path(driver)
+        td= driver.headquarter_id
+        td= driver.name
+        td= driver.phone
+        td= driver.home_latitude
+        td= driver.home_longitude
+        td=l driver.created_at
+        td
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_driver_path(driver), :class => 'btn btn-mini'
+          '
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), driver_path(driver), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+
+= link_to t('.new', :default => t("helpers.links.new")), new_driver_path, :class => 'btn btn-primary'
+

@@ -1,0 +1,10 @@
+= simple_form_for @driver, :html => { :class => "form-horizontal" } do |f|
+  = f.input :headquarter_id
+  = f.input :name
+  = f.input :phone
+  = f.input :home_latitude
+  = f.input :home_longitude
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    '
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), drivers_path, :class => 'btn'

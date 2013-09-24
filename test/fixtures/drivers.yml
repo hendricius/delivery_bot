@@ -1,0 +1,16 @@
+# Read about fixtures at
+# http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  headquarter_id: 1
+  name: MyString
+  phone: MyString
+  home_latitude: 1.5
+  home_longitude: 1.5
+
+two:
+  headquarter_id: 1
+  name: MyString
+  phone: MyString
+  home_latitude: 1.5
+  home_longitude: 1.5
