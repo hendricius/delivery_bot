@@ -1,0 +1,35 @@
+- model_class = Company
+div class="page-header"
+  h1=t '.title', :default => model_class.model_name.human.titleize
+
+p
+  strong= model_class.human_attribute_name(:headquarter_id) + ':'
+  br
+  = @company.headquarter_id
+p
+  strong= model_class.human_attribute_name(:name) + ':'
+  br
+  = @company.name
+p
+  strong= model_class.human_attribute_name(:street) + ':'
+  br
+  = @company.street
+p
+  strong= model_class.human_attribute_name(:city) + ':'
+  br
+  = @company.city
+p
+  strong= model_class.human_attribute_name(:country) + ':'
+  br
+  = @company.country
+p
+  strong= model_class.human_attribute_name(:zipcode) + ':'
+  br
+  = @company.zipcode
+
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), companies_path, :class => 'btn'
+  '
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_company_path(@company), :class => 'btn'
+  '
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), company_path(@company), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

@@ -1,0 +1,18 @@
+# Read about fixtures at
+# http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  headquarter_id: 1
+  name: MyString
+  street: MyString
+  city: MyString
+  country: MyString
+  zipcode: MyString
+
+two:
+  headquarter_id: 1
+  name: MyString
+  street: MyString
+  city: MyString
+  country: MyString
+  zipcode: MyString
