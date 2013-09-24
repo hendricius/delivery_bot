@@ -8,8 +8,6 @@ table class="table table-striped"
       th= model_class.human_attribute_name(:headquarter_id)
       th= model_class.human_attribute_name(:name)
       th= model_class.human_attribute_name(:phone)
-      th= model_class.human_attribute_name(:home_latitude)
-      th= model_class.human_attribute_name(:home_longitude)
       th= model_class.human_attribute_name(:created_at)
       th=t '.actions', :default => t("helpers.actions")
   tbody
@@ -19,8 +17,6 @@ table class="table table-striped"
         td= driver.headquarter_id
         td= driver.name
         td= driver.phone
-        td= driver.home_latitude
-        td= driver.home_longitude
         td=l driver.created_at
         td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_driver_path(driver), :class => 'btn btn-mini'

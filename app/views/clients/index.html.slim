@@ -11,8 +11,6 @@ table class="table table-striped"
       th= model_class.human_attribute_name(:street)
       th= model_class.human_attribute_name(:zipcode)
       th= model_class.human_attribute_name(:country)
-      th= model_class.human_attribute_name(:latitute)
-      th= model_class.human_attribute_name(:longitude)
       th= model_class.human_attribute_name(:created_at)
       th=t '.actions', :default => t("helpers.actions")
   tbody
@@ -25,8 +23,6 @@ table class="table table-striped"
         td= client.street
         td= client.zipcode
         td= client.country
-        td= client.latitute
-        td= client.longitude
         td=l client.created_at
         td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_client_path(client), :class => 'btn btn-mini'
