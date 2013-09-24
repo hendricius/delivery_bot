@@ -2,8 +2,11 @@
   = f.input :headquarter_id
   = f.input :name
   = f.input :phone
-  = f.input :home_latitude
-  = f.input :home_longitude
+  = f.input :street
+  = f.input :zipcode
+  = f.input :city
+  = f.input :country, as: :select, collection: Country::PRIORITY_COUNTRIES.keys,
+    label_method: lambda{|code| Country::COUNTRIES[code] }
   .form-actions
     = f.button :submit, :class => 'btn-primary'
     '
