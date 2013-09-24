@@ -1,0 +1,12 @@
+# Read about fixtures at
+# http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  content: MyText
+  driver_id: 1
+  company_id: 1
+
+two:
+  content: MyText
+  driver_id: 1
+  company_id: 1
