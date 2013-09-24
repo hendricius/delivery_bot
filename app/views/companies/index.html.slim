@@ -17,7 +17,7 @@ table class="table table-striped"
     - @companies.each do |company|
       tr
         td= link_to company.id, company_path(company)
-        td= company.headquarter_id
+        td= company.headquarter.name
         td= company.name
         td= company.street
         td= company.city

@@ -1,5 +1,6 @@
 = simple_form_for @company, :html => { :class => "form-horizontal" } do |f|
-  = f.input :headquarter_id
+  = f.input :headquarter_id, as: :select, collection: Headquarter.all,
+    label_method: lambda{|hq| hq.name }
   = f.input :name
   = f.input :street
   = f.input :zipcode
