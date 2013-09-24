@@ -1,0 +1,2 @@
+module HeadquartersHelper
+end
