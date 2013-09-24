@@ -7,8 +7,6 @@
   = f.input :country, as: :select, collection: Country::PRIORITY_COUNTRIES.keys,
     label_method: lambda{|code| Country::COUNTRIES[code] }
 
-  = f.input :latitute
-  = f.input :longitude
   .form-actions
     = f.button :submit, :class => 'btn-primary'
     '
