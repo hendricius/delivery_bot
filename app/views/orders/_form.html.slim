@@ -1,7 +1,9 @@
 = simple_form_for @order, :html => { :class => "form-horizontal" } do |f|
   = f.input :content
-  = f.input :driver_id
-  = f.input :company_id
+  = f.input :company_id, as: :select, collection: Company.all,
+    label_method: lambda {|company| company.name }
+  = f.input :client_id, as: :select, collection: Client.all,
+    label_method: lambda {|client| client.short_name }
   .form-actions
     = f.button :submit, :class => 'btn-primary'
     '
