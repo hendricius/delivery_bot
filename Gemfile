@@ -60,6 +60,9 @@ gem "rails-bootstrap-helpers", git: "https://github.com/hendricius/rails-bootstr
 gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap'
 
+# For Google maps
+gem 'gmaps4rails'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = Order.all
+    @json = Order.all.to_gmaps4rails
   end
 
   # GET /orders/1
