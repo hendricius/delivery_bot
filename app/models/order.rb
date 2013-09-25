@@ -4,4 +4,6 @@ class Order < ActiveRecord::Base
   belongs_to :client
 
   validates :client, :company, presence: true
+
+  scope :open, -> { where(driver_id: nil) }
 end
