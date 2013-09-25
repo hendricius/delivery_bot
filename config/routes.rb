@@ -1,7 +1,9 @@
 DeliveryBot::Application.routes.draw do
   resources :clients
 
-  resources :drivers
+  resources :drivers do
+    get 'become'
+  end
 
   resources :orders
 

@@ -1,5 +1,5 @@
 class DriversController < ApplicationController
-  before_action :set_driver, only: [:show, :edit, :update, :destroy]
+  before_action :set_driver, only: [:show, :edit, :update, :destroy, :become_driver]
 
   # GET /drivers
   # GET /drivers.json
@@ -59,6 +59,10 @@ class DriversController < ApplicationController
       format.html { redirect_to drivers_url }
       format.json { head :no_content }
     end
+  end
+
+  # Become the driver
+  def become
   end
 
   private
