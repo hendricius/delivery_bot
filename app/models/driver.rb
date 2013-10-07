@@ -1,11 +1,13 @@
 class Driver < ActiveRecord::Base
+
+  CAPACITY = (1..3)
   has_many :orders
   belongs_to :headquarter
 
   validates :headquarter, :name, :phone, :street, :city,
     :country, :zipcode, presence: true
 
-  validates :max_capacity, inclusion: { in: (1..10) }
+  validates :max_capacity, inclusion: { in: CAPACITY }
   validate :current_capacity_max
 
   before_validation :set_current_capacity!, on: :create

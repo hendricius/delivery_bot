@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130925100224) do
+ActiveRecord::Schema.define(version: 20130925123312) do
 
   create_table "clients", force: true do |t|
     t.string   "first_name"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20130925100224) do
     t.float    "latitude"
     t.float    "longitude"
     t.boolean  "gmaps"
+    t.integer  "capacity"
   end
 
 end

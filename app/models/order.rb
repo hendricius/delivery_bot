@@ -1,4 +1,5 @@
 class Order < ActiveRecord::Base
+  CAPACITY = Driver::CAPACITY
   acts_as_gmappable
 
   belongs_to :company
@@ -6,6 +7,8 @@ class Order < ActiveRecord::Base
   belongs_to :client
 
   validates :client, :company, presence: true
+  # Order can have 1..3 capacity
+  validates :capacity, inclusion: { in: CAPACITY }
 
   scope :open, -> { where(driver_id: nil) }
 

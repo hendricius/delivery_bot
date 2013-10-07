@@ -4,7 +4,9 @@
     label_method: lambda {|company| company.name }
   = f.input :client_id, as: :select, collection: Client.all,
     label_method: lambda {|client| client.short_name }
+  = f.input :capacity, as: :select, collection: Order::CAPACITY
   .form-actions
     = f.button :submit, :class => 'btn-primary'
     '
     = link_to t('.cancel', :default => t("helpers.links.cancel")), orders_path, :class => 'btn'
+  - # FIXME show client form here. Then reload, then select the client.

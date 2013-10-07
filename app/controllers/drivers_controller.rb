@@ -15,6 +15,7 @@ class DriversController < ApplicationController
   # GET /drivers/new
   def new
     @driver = Driver.new
+    @driver.max_capacity = 3
   end
 
   # GET /drivers/1/edit
@@ -63,6 +64,7 @@ class DriversController < ApplicationController
 
   # Become the driver
   def become
+    @body_id = "drivers_become"
   end
 
   private
@@ -73,6 +75,7 @@ class DriversController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def driver_params
-      params.require(:driver).permit(:headquarter_id, :name, :phone, :street, :zipcode, :city, :country, :current_capacity, :max_capacity)
+      params.require(:driver).permit(:headquarter_id, :name, :phone, :street,
+        :zipcode, :city, :country, :current_capacity, :max_capacity)
     end
 end

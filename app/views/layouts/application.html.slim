@@ -20,7 +20,7 @@ html lang="en"
 
 
 
-  body
+  body id="#{defined?(@body_id) ? @body_id : ""}"
     .navbar.navbar-fixed-top
       .navbar-inner
         .container

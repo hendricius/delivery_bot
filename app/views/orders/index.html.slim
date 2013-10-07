@@ -6,6 +6,7 @@ table class="table table-striped"
     tr
       th= model_class.human_attribute_name(:id)
       th= model_class.human_attribute_name(:content)
+      th= model_class.human_attribute_name(:capacity)
       th= model_class.human_attribute_name(:driver_id)
       th= model_class.human_attribute_name(:company_id)
       th= model_class.human_attribute_name(:created_at)
@@ -15,6 +16,7 @@ table class="table table-striped"
       tr
         td= link_to order.id, order_path(order)
         td= order.content
+        td= order.capacity
         td= order.driver_id
         td= order.company_id
         td=l order.created_at
