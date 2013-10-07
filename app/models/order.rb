@@ -19,4 +19,8 @@ class Order < ActiveRecord::Base
 
   delegate :city, :street, :zipcode, :country, to: :client
 
+  def address
+    "#{street}, #{zipcode}, #{city}, #{country}"
+  end
+
 end

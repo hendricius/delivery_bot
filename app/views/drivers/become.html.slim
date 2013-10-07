@@ -1,1 +1,19 @@
 #driver_position
+
+.row-fluid
+  .span6
+    table.table.table-striped.table-condensed
+      thead
+        tr
+          th Capacity
+          th Content
+          th Client
+      tbody
+        - @driver.orders.each do |order|
+          tr
+            td #{order.capacity} x
+            td #{order.content}
+            td= link_to order.client.short_name, order.client
+
+  .span6
+    = gmaps(@directions)

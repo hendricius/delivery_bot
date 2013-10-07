@@ -12,6 +12,11 @@ class Driver < ActiveRecord::Base
 
   before_validation :set_current_capacity!, on: :create
 
+
+  def address
+    "#{street}, #{zipcode}, #{city}, #{country}"
+  end
+
   private
 
   def set_current_capacity!

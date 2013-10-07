@@ -1,5 +1,5 @@
 class DriversController < ApplicationController
-  before_action :set_driver, only: [:show, :edit, :update, :destroy, :become_driver]
+  before_action :set_driver, only: [:show, :edit, :update, :destroy, :become]
 
   # GET /drivers
   # GET /drivers.json
@@ -65,12 +65,32 @@ class DriversController < ApplicationController
   # Become the driver
   def become
     @body_id = "drivers_become"
+    @orders = @driver.orders
+    if @orders.length == 1
+      @directions = {"direction" =>
+                      {"data" =>
+                        { "from" => @driver.address, "to" => @orders.first.address }
+                      }
+                    }
+    else
+      waypoints = @orders[0...-1].map{|order| order.address }
+      @directions = {
+                      "direction" =>
+                        {"data" =>
+                          {
+                            "from" => @driver.address, "to" => @orders.last.address }
+                        },
+                      "options" =>
+                        {"waypoints" => waypoints }
+                      }
+    end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_driver
-      @driver = Driver.find(params[:id])
+      id = params[:id] || params[:driver_id]
+      @driver = Driver.find(id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
