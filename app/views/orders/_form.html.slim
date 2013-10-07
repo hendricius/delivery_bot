@@ -5,6 +5,8 @@
   = f.input :client_id, as: :select, collection: Client.all,
     label_method: lambda {|client| client.short_name }
   = f.input :capacity, as: :select, collection: Order::CAPACITY
+  = f.input :driver_id, as: :select, collection: Driver.all,
+    label_method: lambda {|driver| driver.name }
   .form-actions
     = f.button :submit, :class => 'btn-primary'
     '
