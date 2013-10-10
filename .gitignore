@@ -19,3 +19,4 @@ db/*.sqlite3
 _yardoc
 doc/
 log/*
+.DS_Store
