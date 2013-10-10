@@ -20,7 +20,7 @@ class Driver < ActiveRecord::Base
   private
 
   def set_current_capacity!
-    self.capacity = 0
+    self.current_capacity = 0
     true
   end
 

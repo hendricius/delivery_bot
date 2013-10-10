@@ -1,7 +1,60 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+def sample_headquarter
+  Headquarter.first || Headquarter.create(name: "Headquarter 1")
+end
+
+def sample_company(optional_args = {})
+  hash = {
+    name: "Company " + SecureRandom.hex(5),
+    street: "Teststreet",
+    zipcode: 37075,
+    city: "Göttingen",
+    country: "DE"
+  }
+  hash = hash.merge(optional_args)
+  sample_headquarter.companies.create(hash)
+end
+
+def sample_client(optional_args = {})
+  hash = {
+    first_name: "User" + SecureRandom.hex(5),
+    last_name: "User",
+    street: "Teststreet",
+    zipcode: 37075,
+    city: "Göttingen",
+    country: "DE"
+  }
+  hash = hash.merge(optional_args)
+  Client.create(hash)
+end
+
+def sample_driver(optional_args = {})
+  hash = {
+    name: "Driver " + SecureRandom.hex(5),
+    street: "Teststreet",
+    zipcode: 37075,
+    city: "Göttingen",
+    phone: 123123,
+    max_capacity: rand(Driver::CAPACITY),
+    country: "DE"
+  }
+  hash = hash.merge(optional_args)
+  sample_headquarter.drivers.create(hash)
+end
+
+
+sample_headquarter
+
+company1 = sample_company(name: "Rialto Göttingen GmbH", zipcode: "37073", street: "Weender Landstraße 3")
+company2 = sample_company(name: "Joey's Pizza Göttingen Nord", zipcode: "37075", street: "An der Lutter 22")
+sample_company(name: "Call a Pizza Göttingen Nord", zipcode: "37075", street: "Weender Landstraße 77")
+sample_company(name: "Joey's Pizza Göttingen Süd", zipcode: "37078", street: "Geismar Landstraße 36")
+
+client1 = sample_client(first_name: "Hendrik", street: "Kreuzbergring 4", zipcode: 37075)
+client2 = sample_client(first_name: "Bene", street: "Kreuzbergring 28", zipcode: 37075)
+
+sample_driver(name: "Luigi", street: "Von Ossietzky Str. 1",  zipcode: 37085)
+sample_driver(name: "Mario", street: "Göttinger Str. 41",  zipcode: 37124)
+sample_driver(name: "Bowser", street: "Kurze-Geismar-Str. 41",  zipcode: 37073)
+
+client1.orders.create(company: company1, content: "1 * Suflaki", capacity: rand(Order::CAPACITY))
+client2.orders.create(company: company2, content: "5 * Suflaki", capacity: rand(Order::CAPACITY))
