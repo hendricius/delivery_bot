@@ -12,9 +12,14 @@ class Driver < ActiveRecord::Base
 
   before_validation :set_current_capacity!, on: :create
 
-
   def address
     "#{street}, #{zipcode}, #{city}, #{country}"
+  end
+
+  def time_for_order(order)
+    # FIXME right now this is just a random time. This should change once we
+    # we have an API service that is not that expensive.
+    rand(300..1800)
   end
 
   private
