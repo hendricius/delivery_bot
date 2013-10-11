@@ -19,9 +19,9 @@ table class="table table-striped"
         td= driver.phone
         td=l driver.created_at
         td
-          = link_to t('.edit', :default => t("helpers.links.edit")), edit_driver_path(driver), :class => 'btn btn-mini'
+          = link_to t(:become), driver_become_path(driver), class: 'btn btn-mini btn-primary'
           '
-          = link_to t(:become), driver_become_path(driver), class: 'btn btn-mini'
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_driver_path(driver), :class => 'btn btn-mini'
           '
           = link_to t('.destroy', :default => t("helpers.links.destroy")), driver_path(driver), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
 
