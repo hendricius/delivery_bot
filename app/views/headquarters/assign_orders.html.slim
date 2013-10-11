@@ -2,3 +2,11 @@ h4 Properly assigned orders
 ul
 - @headquarter.timetable.happenings.each do |happening|
   li= happening
+
+h4 Timetable
+ul
+  - @headquarter.timetable.initial_table.each do |combination|
+    li Order: #{combination.order.id}, Driver: #{combination.driver.name}, Time in secs: #{combination.time}
+
+
+= link_to "Unassign and Redo", assign_orders_headquarter_path(@headquarter, redo: true), method: :post, class: "btn btn-primary"

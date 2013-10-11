@@ -62,6 +62,10 @@ class HeadquartersController < ApplicationController
   end
 
   def assign_orders
+    if params[:redo]
+      # Clear all order assignments
+      Order.update_all(driver_id: nil)
+    end
     @headquarter.assign_orders!
     respond_to do |format|
       format.html { render action: 'assign_orders' }
