@@ -22,6 +22,11 @@ class Driver < ActiveRecord::Base
     rand(300..1800)
   end
 
+  # FIXME this needs to return the tour time of all currently assigned orders.
+  def complex_tour_time(order, time)
+    time + orders.count * rand(300..1800)
+  end
+
   private
 
   def set_current_capacity!

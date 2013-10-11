@@ -1,14 +1,20 @@
 class Headquarter < ActiveRecord::Base
+
+  attr_accessor :timetable
+
   has_many :companies
   has_many :drivers
 
   validates :name, presence: true
 
+  # This assigns all the open orders to a driver, picking those drivers that
+  # have the best time.
   def assign_orders!
-    open_orders.each do |order|
-      order.driver_id = drivers.sample.id
-      order.save
-    end
+    timetable = Timetable.new(orders: open_orders, drivers: drivers)
+    timetable.assign_based_on_algorithm!
+    # Store the timetable for later use.
+    self.timetable = timetable
+    timetable
   end
 
   def orders
