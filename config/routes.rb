@@ -9,7 +9,11 @@ DeliveryBot::Application.routes.draw do
 
   resources :companies
 
-  resources :headquarters
+  resources :headquarters do
+    member do
+      post 'assign_orders'
+    end
+  end
 
   root 'static#home'
 end

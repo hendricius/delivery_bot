@@ -1,5 +1,5 @@
 class HeadquartersController < ApplicationController
-  before_action :set_headquarter, only: [:show, :edit, :update, :destroy]
+  before_action :set_headquarter, only: [:show, :edit, :update, :destroy, :assign_orders]
 
   # GET /headquarters
   # GET /headquarters.json
@@ -58,6 +58,13 @@ class HeadquartersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to headquarters_url }
       format.json { head :no_content }
+    end
+  end
+
+  def assign_orders
+    @headquarter.assign_orders!
+    respond_to do |format|
+      format.html { render action: 'assign_orders' }
     end
   end
 
