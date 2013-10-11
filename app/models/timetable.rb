@@ -1,11 +1,13 @@
 class Timetable
 
-  attr_accessor :driver_order_times, :orders, :drivers, :initial_table
+  attr_accessor :driver_order_times, :orders, :drivers, :initial_table, :happenings
 
   def initialize(orders: [], drivers: [])
     self.orders = orders
     self.drivers = drivers
     self.driver_order_times = []
+    # For reporting purposes, store what is happening.
+    self.happenings = []
   end
 
   # Assigns orders to drivers
@@ -20,6 +22,7 @@ class Timetable
 
     while orders_count > 0 do
       fastest_combination = fastest
+      self.happenings.push "Fastest driver: #{fastest_combination.driver.name} - #{fastest_combination.time} seconds - order_id: #{fastest_combination.order.id} for client #{fastest_combination.order.client.short_name}"
 
       # Assign the actual order to the fastest combination
       order = fastest_combination.order
@@ -98,6 +101,19 @@ class Timetable
     combinations.each do |driver_order_time|
       driver_order_time.time = driver_order_time.driver.complex_tour_time(driver_order_time.order, driver_order_time.time)
     end
+  end
+
+  # Pretty print in string form what actually happened.
+  def happenings_friendly
+    result = ""
+    happenings.each_with_index do |happening, index|
+      if (happenings.length - 1) == index
+        result += "#{happening}"
+      else
+        result += "#{happening}\n\n"
+      end
+    end
+    result
   end
 
 end
