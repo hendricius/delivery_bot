@@ -1,20 +1,26 @@
 #driver_position
 
-.row-fluid
-  .span6
+= accordion "driver_become" do |a|
+  - a.group "Order table" do
     table.table.table-striped.table-condensed
       thead
         tr
           th Capacity
           th Content
           th Client
+          th Company
       tbody
         - @driver.orders.each do |order|
           tr
             td #{order.capacity} x
             td #{order.content}
             td= link_to order.client.short_name, order.client
-
-  .span6
-    = gmaps(@directions)
--# FIXME also show path including companies. Show all waypoints.
+            td= link_to order.company.name, order.company
+  - a.group "Map" do
+    = gmaps(@driver.build_route)
+  - a.group "Todo list" do
+    ul
+      - @driver.build_route_human.each do |instruction|
+        li=instruction.html_safe
+  - a.group "Maps driving Instructions" do
+    #instructions

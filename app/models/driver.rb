@@ -27,6 +27,42 @@ class Driver < ActiveRecord::Base
     time + orders.count * rand(300..1800)
   end
 
+  # Build the route for Google maps
+  def build_route
+    start_point = address
+    end_point = address
+    waypoints = []
+    orders.each do |order|
+      # Go to the company first.
+      waypoints << order.company.address
+      # Go to the client after
+      waypoints << order.address
+    end
+    direction_hash = {
+      "direction" => {
+        "data" => { "from" => start_point, "to" => end_point}
+      }
+    }
+    if waypoints.length > 0
+      direction_hash["direction"]["options"] = {"waypoints" => waypoints, "display_panel" => true, "panel_id" => "instructions"}
+    end
+    direction_hash
+  end
+
+  def build_route_human
+    return ["Has no orders, will idle"] if orders.count == 0
+    route = []
+    route << "Start in #{address} <label class='label'>Start</label>"
+    orders.each do |order|
+      # Go to the company first.
+      route << "Go to company #{order.company.name} - #{order.company.address} <label class='label label-warning'>Company</label>"
+      # Go to the client after
+      route << "Go to client #{order.client.short_name} - #{order.address} <label class='label label-success'>Client</label>"
+    end
+    route << "Return to #{address} <label class='label'>End</label>"
+    route
+  end
+
   private
 
   def set_current_capacity!

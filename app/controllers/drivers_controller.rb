@@ -65,25 +65,6 @@ class DriversController < ApplicationController
   # Become the driver
   def become
     @body_id = "drivers_become"
-    @orders = @driver.orders
-    if @orders.length == 1
-      @directions = {"direction" =>
-                      {"data" =>
-                        { "from" => @driver.address, "to" => @orders.first.address }
-                      }
-                    }
-    else
-      waypoints = @orders[0...-1].map{|order| order.address }
-      @directions = {
-                      "direction" =>
-                        {"data" =>
-                          {
-                            "from" => @driver.address, "to" => @orders.last.address }
-                        },
-                      "options" =>
-                        {"waypoints" => waypoints }
-                      }
-    end
   end
 
   private
